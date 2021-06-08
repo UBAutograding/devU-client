@@ -3,7 +3,7 @@ import config from '../config'
 import { getToken } from 'services/authentication.service'
 
 const proxiedUrls = {
-  '/api': `${config.apiUrl}/api`,
+  '/api': `${config.apiUrl}`,
 }
 
 /**
@@ -26,6 +26,7 @@ function _handleResponse(res: Response) {
   const body = res.json().catch((err) => _handleNonJsonResponse(err, res))
 
   if (res.ok) return body
+
   return body.then((err) => {
     throw err
   })
