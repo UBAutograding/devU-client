@@ -8,6 +8,7 @@ import RequestService from 'services/request.service'
 
 import LoadingOverlay from 'components/shared/loaders/loadingOverlay'
 import TextField from 'components/shared/inputs/textField'
+import ValidationErrorViewer from 'components/shared/errors/validationErrorViewer'
 
 import styles from './authProvider.scss'
 
@@ -29,7 +30,7 @@ const ProviderSelector = ({ providers, onSelect }: ProviderSelectorProps) => (
 
 const ProviderForm = ({ provider }: ProivderFormProps) => {
   const [formData, setFormData] = useState<Record<string, string>>({})
-  const [_errors, setErrors] = useState(new Array<ExpressValidationError>())
+  const [errors, setErrors] = useState(new Array<ExpressValidationError>())
 
   const { body: fields = [] } = provider
 
@@ -51,7 +52,7 @@ const ProviderForm = ({ provider }: ProivderFormProps) => {
       <p className={styles.description}>{provider.description}</p>
       <form onSubmit={handleSubmit}>
         <div className={styles.fields}>
-          {fields.map((fieldName: string, index: number) => (
+          {fields.map((fieldName, index) => (
             <TextField
               id={`input-${index}`}
               type={fieldName}
@@ -61,6 +62,7 @@ const ProviderForm = ({ provider }: ProivderFormProps) => {
             />
           ))}
         </div>
+        {errors.length > 0 && <ValidationErrorViewer errors={errors} />}
         <button onSubmit={handleSubmit} className={styles.submit}>
           Submit
         </button>
