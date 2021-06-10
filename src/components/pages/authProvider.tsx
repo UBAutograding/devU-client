@@ -48,6 +48,7 @@ const ProviderForm = ({ provider }: ProivderFormProps) => {
   return (
     <>
       <h1>{toCapitalizedWords(provider.name)}</h1>
+      <p className={styles.description}>{provider.description}</p>
       <form onSubmit={handleSubmit}>
         <div className={styles.fields}>
           {fields.map((fieldName: string, index: number) => (
