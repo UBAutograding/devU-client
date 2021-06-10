@@ -54,7 +54,7 @@ async function get(url: string, options: RequestInit = {}, unauthenticated = fal
 
   const request: any = {
     method: 'GET',
-    headers: { accept: 'application/json' },
+    headers: { accept: 'application/json', 'content-type': 'application/json' },
     ...options, // Provieds users a way to override everything
   }
 
@@ -71,7 +71,7 @@ async function post(url: string, body: Record<string, any>, options: RequestInit
 
   const request: any = {
     method: 'POST',
-    headers: { accept: 'application/json' },
+    headers: { accept: 'application/json', 'content-type': 'application/json' },
     body: JSON.stringify(body),
     ...options,
   }
@@ -91,7 +91,7 @@ async function put(url: string, body: Record<string, any>, options: RequestInit 
 
   return _fetchWrapper(proxy, {
     method: 'PUT',
-    headers: { accept: 'application/json', authorization: `JWT ${token}` },
+    headers: { accept: 'application/json', 'content-type': 'application/json', authorization: `JWT ${token}` },
     body: JSON.stringify(body),
     ...options,
   })
@@ -103,7 +103,7 @@ async function deleteRequest(url: string, options: RequestInit = {}) {
 
   return _fetchWrapper(proxy, {
     method: 'DELETE',
-    headers: { accept: 'application/json', authorization: `JWT ${authToken}` },
+    headers: { accept: 'application/json', 'content-type': 'application/json', authorization: `JWT ${authToken}` },
     ...options,
   })
 }

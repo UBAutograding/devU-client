@@ -30,3 +30,25 @@
     cursor: pointer;
   }
 }
+
+.fields {
+  margin-bottom: 30px;
+}
+
+.submit {
+  width: 100%;
+  background: $purple;
+  color: white;
+
+  padding: 10px;
+  text-align: center;
+
+  border: none;
+  border-radius: 3px;
+
+  font-size: 18px;
+
+  &:hover:enabled {
+    cursor: pointer;
+  }
+}

@@ -27,10 +27,10 @@ const App = () => {
 
   useEffect(checkLoginStatus, [])
 
-  if (loading) return <LoadingOverlay />
-  if (!authenticated) return <AuthProvider />
+  if (loading) return <LoadingOverlay /> // TODO - needs some styling
+  if (!authenticated) return <AuthProvider /> // TODO - needs to support POST & fields
 
-  if (error) return <div>Error</div>
+  if (error) return <div>Error</div> // Should probably be an actual errors page
 
   return (
     <Router history={history}>
