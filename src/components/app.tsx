@@ -27,8 +27,8 @@ const App = () => {
 
   useEffect(checkLoginStatus, [])
 
-  if (loading) return <LoadingOverlay /> // TODO - needs some styling
-  if (!authenticated) return <AuthProvider /> // TODO - needs to support POST & fields
+  if (loading) return <LoadingOverlay delay={100} />
+  if (!authenticated) return <AuthProvider />
 
   if (error) return <div>Error</div> // Should probably be an actual errors page
 
