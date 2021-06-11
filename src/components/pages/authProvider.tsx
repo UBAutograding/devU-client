@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { Provider, ExpressValidationError, toCapitalizedWords } from 'devu-shared-modules'
+import { AuthProvider, ExpressValidationError, toCapitalizedWords } from 'devu-shared-modules'
 
 import config from 'config'
 
@@ -12,8 +12,8 @@ import ValidationErrorViewer from 'components/shared/errors/validationErrorViewe
 
 import styles from './authProvider.scss'
 
-type ProviderSelectorProps = { providers: Provider[]; onSelect: (provider: Provider) => void }
-type ProivderFormProps = { provider: Provider }
+type ProviderSelectorProps = { providers: AuthProvider[]; onSelect: (provider: AuthProvider) => void }
+type ProivderFormProps = { provider: AuthProvider }
 
 const ProviderSelector = ({ providers, onSelect }: ProviderSelectorProps) => (
   <>
@@ -74,8 +74,8 @@ const ProviderForm = ({ provider }: ProivderFormProps) => {
 const AuthProvider = ({}) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [providers, setProviders] = useState(new Array<Provider>())
-  const [provider, setProvider] = useState<null | Provider>(null)
+  const [providers, setProviders] = useState(new Array<AuthProvider>())
+  const [provider, setProvider] = useState<null | AuthProvider>(null)
 
   const fetchProviders = () => {
     RequestService.get('/api/login/providers')
@@ -84,7 +84,7 @@ const AuthProvider = ({}) => {
       .finally(() => setLoading(false))
   }
 
-  const handleProviderSelect = (provider: Provider) => {
+  const handleProviderSelect = (provider: AuthProvider) => {
     if (provider.method === 'post') return setProvider(provider)
 
     // Needs to allow the browser to actually redirect to via a 302
