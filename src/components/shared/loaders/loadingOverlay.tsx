@@ -11,7 +11,6 @@ type Props = {
 
 const STUPID_PHRASES = [
   'Failing Students',
-  'Prepping Autos',
   'Organizing Classes',
   'Feeding Professors',
   'Shredding Papers',

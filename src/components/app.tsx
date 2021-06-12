@@ -12,6 +12,7 @@ import { setUser } from 'redux/actions/user.actions'
 import history from 'services/history.service'
 
 import fetchUser from 'utils/fetchUser.utils'
+import { initializeTheme } from 'utils/theme.utils'
 
 const mapDispatch = { setUser }
 const connector = connect(null, mapDispatch)
@@ -24,6 +25,8 @@ const App = ({ setUser }: Props) => {
   const [authenticated, setAuthenticated] = useState(false)
 
   useEffect(() => {
+    initializeTheme() // Sets the default state for darkMode
+
     fetchUser()
       .then(setUser)
       .then(() => setAuthenticated(true))
