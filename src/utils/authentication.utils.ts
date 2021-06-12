@@ -6,10 +6,6 @@ import store from 'redux/store'
 import { RootState } from 'redux/reducers'
 import { SET_USER } from 'redux/types/user.types'
 
-function timeInSecondsToEpoch(): number {
-  return Math.round(Date.now() / 1000)
-}
-
 export function decodeAccessToken(accessToken: string): AccessToken {
   const base64Url = accessToken.split('.')[1]
   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
@@ -23,6 +19,24 @@ export function decodeAccessToken(accessToken: string): AccessToken {
   return JSON.parse(jsonPayload)
 }
 
+function timeInSecondsToEpoch(): number {
+  return Math.round(Date.now() / 1000)
+}
+
+function setToken({ accessToken }: Token) {
+  const state: RootState = store.getState()
+  const payload = { ...state.user, accessToken }
+
+  store.dispatch({ type: SET_USER, payload: payload })
+
+  return accessToken
+}
+
+/**
+ * Gets your accessToken from the state
+ * Using this function ensures that your accessToken is always up to date
+ * (aka it refreshes it for you if it's expired or nearing expiration)
+ */
 export function getToken(): Promise<string> | string {
   const state: RootState = store.getState()
   const { accessToken } = state.user
@@ -43,13 +57,4 @@ export function getToken(): Promise<string> | string {
 
       return '' // to make sure the function always returns a string
     })
-}
-
-function setToken({ accessToken }: Token) {
-  const state: RootState = store.getState()
-  const payload = { ...state.user, accessToken }
-
-  store.dispatch({ type: SET_USER, payload: payload })
-
-  return accessToken
 }

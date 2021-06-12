@@ -1,6 +1,6 @@
 import config from '../config'
 
-import { getToken } from 'services/authentication.service'
+import { getToken } from 'utils/authentication.utils'
 
 const proxiedUrls = {
   '/api': `${config.apiUrl}`,
