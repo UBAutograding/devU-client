@@ -60,7 +60,7 @@ async function get(url: string, options: RequestInit = {}, unauthenticated = fal
 
   if (!unauthenticated) {
     const authToken = await getToken()
-    if (authToken) request.headers['authorization'] = `JWT ${authToken}`
+    if (authToken) request.headers['authorization'] = `Bearer ${authToken}`
   }
 
   return _fetchWrapper(proxy, request)
@@ -79,7 +79,7 @@ async function post(url: string, body: Record<string, any>, options: RequestInit
   if (!unauthenticated) {
     const authToken = await getToken()
 
-    if (authToken) request.headers['authorization'] = `JWT ${authToken}`
+    if (authToken) request.headers['authorization'] = `Bearer ${authToken}`
   }
 
   return _fetchWrapper(proxy, request)
@@ -91,7 +91,7 @@ async function put(url: string, body: Record<string, any>, options: RequestInit 
 
   return _fetchWrapper(proxy, {
     method: 'PUT',
-    headers: { accept: 'application/json', 'content-type': 'application/json', authorization: `JWT ${token}` },
+    headers: { accept: 'application/json', 'content-type': 'application/json', authorization: `Bearer ${token}` },
     body: JSON.stringify(body),
     ...options,
   })
@@ -103,7 +103,7 @@ async function deleteRequest(url: string, options: RequestInit = {}) {
 
   return _fetchWrapper(proxy, {
     method: 'DELETE',
-    headers: { accept: 'application/json', 'content-type': 'application/json', authorization: `JWT ${authToken}` },
+    headers: { accept: 'application/json', 'content-type': 'application/json', authorization: `Bearer ${authToken}` },
     ...options,
   })
 }
@@ -114,7 +114,7 @@ async function upload(url: string, file: File, options: RequestInit = {}) {
 
   return _fetchWrapper(proxy, {
     method: 'POST',
-    headers: { authorization: `JWT ${token}` },
+    headers: { authorization: `Bearer ${token}` },
     body: file,
     ...options,
   })
