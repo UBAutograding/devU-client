@@ -28,7 +28,7 @@ const App = ({ setUser }: Props) => {
       .then(setUser)
       .then(() => setAuthenticated(true))
       .catch(setError)
-      .finally(() => setLoading(false))
+      .finally(() => setLoading(true))
   }, [])
 
   if (loading) return <LoadingOverlay delay={100} />

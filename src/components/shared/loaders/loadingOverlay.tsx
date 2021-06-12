@@ -9,7 +9,14 @@ type Props = {
   className?: string
 }
 
-const STUPID_PHRASES = ['Failing Students', 'Prepping Autos', 'Organizing Classes']
+const STUPID_PHRASES = [
+  'Failing Students',
+  'Prepping Autos',
+  'Organizing Classes',
+  'Feeding Professors',
+  'Shredding Papers',
+  'Sharpening Pencils',
+]
 
 const LoadingOverlay = ({ delay = 0, className = '' }: Props) => {
   const [showOverlay, setShowOverlay] = useState(false)
