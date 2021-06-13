@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { Switch, Route, Router } from 'react-router'
 
 import { AuthProvider, ExpressValidationError, toCapitalizedWords } from 'devu-shared-modules'
 
 import config from 'config'
 
 import RequestService from 'services/request.service'
+import history from 'services/history.service'
 
 import LoadingOverlay from 'components/shared/loaders/loadingOverlay'
 import TextField from 'components/shared/inputs/textField'
@@ -13,11 +15,11 @@ import ValidationErrorViewer from 'components/shared/errors/validationErrorViewe
 import styles from './authProvider.scss'
 
 type ProviderSelectorProps = { providers: AuthProvider[]; onSelect: (provider: AuthProvider) => void }
-type ProivderFormProps = { provider: AuthProvider }
+type ProivderFormProps = { provider?: AuthProvider }
 
 const ProviderSelector = ({ providers, onSelect }: ProviderSelectorProps) => (
   <>
-    <h1>Select a Login Provider</h1>
+    <h1 className={styles.header}>Select a Login Provider</h1>
     <div className={styles.providerList}>
       {providers.map((provider, index) => (
         <button onClick={() => onSelect(provider)} key={index} className={styles.providerButton}>
@@ -29,8 +31,13 @@ const ProviderSelector = ({ providers, onSelect }: ProviderSelectorProps) => (
 )
 
 const ProviderForm = ({ provider }: ProivderFormProps) => {
+  if (!provider) {
+    history.push('/')
+    return null
+  }
+
   const [formData, setFormData] = useState<Record<string, string>>({})
-  const [errors, setErrors] = useState(new Array<ExpressValidationError>())
+  const [errors, setErrors] = useState<ExpressValidationError[] | Error>(new Array<ExpressValidationError>())
 
   const { body: fields = [] } = provider
 
@@ -46,11 +53,13 @@ const ProviderForm = ({ provider }: ProivderFormProps) => {
       .catch(setErrors)
   }
 
+  const hasErrors = (Array.isArray(errors) && errors.length > 0) || (!Array.isArray(errors) && errors.message)
+
   return (
     <>
-      <h1>{toCapitalizedWords(provider.name)}</h1>
+      <h1 className={styles.header}>{toCapitalizedWords(provider.name)}</h1>
       <p className={styles.description}>{provider.description}</p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.submitForm}>
         <div className={styles.fields}>
           {fields.map((fieldName, index) => (
             <TextField
@@ -62,7 +71,7 @@ const ProviderForm = ({ provider }: ProivderFormProps) => {
             />
           ))}
         </div>
-        {errors.length > 0 && <ValidationErrorViewer errors={errors} />}
+        {hasErrors && <ValidationErrorViewer errors={errors} />}
         <button onSubmit={handleSubmit} className={styles.submit}>
           Submit
         </button>
@@ -75,7 +84,7 @@ const AuthProvider = ({}) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [providers, setProviders] = useState(new Array<AuthProvider>())
-  const [provider, setProvider] = useState<null | AuthProvider>(null)
+  const [provider, setProvider] = useState<AuthProvider>()
 
   const fetchProviders = () => {
     RequestService.get('/api/login/providers')
@@ -85,7 +94,10 @@ const AuthProvider = ({}) => {
   }
 
   const handleProviderSelect = (provider: AuthProvider) => {
-    if (provider.method === 'post') return setProvider(provider)
+    if (provider.method === 'post') {
+      history.push('/login')
+      return setProvider(provider)
+    }
 
     // Needs to allow the browser to actually redirect to via a 302
     window.location.href = config.apiUrl + provider.route
@@ -96,16 +108,24 @@ const AuthProvider = ({}) => {
   if (loading) <LoadingOverlay />
   if (error) <div>error</div>
 
+  // This is built out as it's own router (aka an unauthenticated router)
+  // We may want to one day pull the provider stuff out from an unauthenticated router
+  // if we ever wanted to support non authenticated pages beyond logging in
   return (
-    <div className={styles.page}>
-      <div className={styles.card}>
-        {provider ? (
-          <ProviderForm provider={provider} />
-        ) : (
-          <ProviderSelector providers={providers} onSelect={handleProviderSelect} />
-        )}
+    <Router history={history}>
+      <div className={styles.page}>
+        <div className={styles.card}>
+          <Switch>
+            <Route exact path='/login'>
+              <ProviderForm provider={provider} />
+            </Route>
+            <Route>
+              <ProviderSelector providers={providers} onSelect={handleProviderSelect} />
+            </Route>
+          </Switch>
+        </div>
       </div>
-    </div>
+    </Router>
   )
 }
 

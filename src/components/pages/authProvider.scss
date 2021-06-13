@@ -7,13 +7,17 @@
 
   height: 100%;
 
-  background: $grey-lightest;
+  background: $background;
 }
 
 .card {
   padding: 20px;
   box-shadow: $box-shadow;
-  background: white;
+  background: $primary;
+}
+
+.header {
+  margin-top: 0;
 }
 
 .providerList {
@@ -31,6 +35,10 @@
   }
 }
 
+.submitForm {
+  max-width: 300px;
+}
+
 .description {
   width: 300px;
   font-weight: 300;
@@ -42,7 +50,7 @@
 
 .submit {
   width: 100%;
-  background: $purple;
+  background: $green;
   color: white;
 
   padding: 10px;
