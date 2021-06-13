@@ -48,7 +48,7 @@ export function getToken(): Promise<string> | string {
 
   if (decodedToken.exp && decodedToken.exp < expirationCutoff) return accessToken
 
-  return RequestService.get('/api/login', { credentials: 'include' })
+  return RequestService.get('/api/login/refresh', { credentials: 'include' })
     .then(setToken)
     .catch(() => {
       // What do we want to do if a user attempts to update and their refreshToken is no longer good?
