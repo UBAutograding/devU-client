@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Switch, Route, Router } from 'react-router'
 
-import { AuthProvider, ExpressValidationError, toCapitalizedWords } from 'devu-shared-modules'
+import { AuthProvider, ExpressValidationError } from 'devu-shared-modules'
 
 import config from 'config'
 
@@ -57,7 +57,7 @@ const ProviderForm = ({ provider }: ProivderFormProps) => {
 
   return (
     <>
-      <h1 className={styles.header}>{toCapitalizedWords(provider.name)}</h1>
+      <h1 className={styles.header}>{provider.name}</h1>
       <p className={styles.description}>{provider.description}</p>
       <form onSubmit={handleSubmit} className={styles.submitForm}>
         <div className={styles.fields}>

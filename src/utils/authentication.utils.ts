@@ -51,8 +51,8 @@ export function getToken(): Promise<string> | string {
   return RequestService.get('/api/login/refresh', { credentials: 'include' })
     .then(setToken)
     .catch(() => {
-      // What do we want to do if a user attempts to update and their refreshToken is no longer good?
-      // Just reload the page for now?
+      // If for whatever reason the user can't be reauthenticated
+      // Refresh to restart the auth flow
       window.location.reload
 
       return '' // to make sure the function always returns a string
