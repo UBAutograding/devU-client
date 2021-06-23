@@ -49,7 +49,11 @@ const ProviderForm = ({ provider }: ProivderFormProps) => {
     const { route } = provider
 
     RequestService.post(`/api${route}`, formData, { credentials: 'include' })
-      .then(() => window.location.reload())
+      .then(() => {
+        // Forcebaly reload the page at the root of the application
+        // Can't use react router here because it'll flash back to auth select before it can reload
+        window.location.href = window.location.origin
+      })
       .catch(setErrors)
   }
 
