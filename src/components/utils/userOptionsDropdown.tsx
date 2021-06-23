@@ -23,6 +23,16 @@ const UserOptionsDropdown = ({ name }: Props) => {
     setOpen(false)
   }
 
+  const handleViewAccount = () => {
+    // TODO - implmenet account page
+    console.log('TODO - implement account page')
+  }
+
+  const handleLogout = () => {
+    // TODO - call api/logout
+    console.log('TODO - call logout api endpoint and reload to origin')
+  }
+
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside, { capture: true })
     return () => document.removeEventListener('mousedown', handleClickOutside, { capture: true })
@@ -39,11 +49,11 @@ const UserOptionsDropdown = ({ name }: Props) => {
 
       {/* Menu open closed controlled via CSS */}
       <div className={`${styles.menu} ${open ? styles.open : ''}`}>
-        <button onClick={() => console.log('Goto account')} className={styles.option}>
+        <button onClick={handleViewAccount} className={styles.option}>
           Account
         </button>
         <hr />
-        <button onClick={() => console.log('Logout')} className={styles.option}>
+        <button onClick={handleLogout} className={styles.option}>
           Logout
         </button>
       </div>
