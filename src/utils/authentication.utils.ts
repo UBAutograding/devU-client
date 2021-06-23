@@ -48,7 +48,7 @@ export function getToken(): Promise<string> | string {
 
   if (decodedToken.exp && decodedToken.exp < expirationCutoff) return accessToken
 
-  return RequestService.get('/api/login/refresh', { credentials: 'include' })
+  return RequestService.get('/api/login', { credentials: 'include' })
     .then(setToken)
     .catch(() => {
       // If for whatever reason the user can't be reauthenticated

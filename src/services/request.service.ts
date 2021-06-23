@@ -25,6 +25,10 @@ function _handleResponse(res: Response) {
   // unfulfilled promise & error handling for non json response bodies
   const body = res.json().catch((err) => _handleNonJsonResponse(err, res))
 
+  // One off header check for /login
+  // if we see this header, we force our user to relogin
+  if (res.headers.get('x-nearing-expiration') === 'true') throw new Error('Forced token expiration')
+
   if (res.ok) return body
 
   return body.then((err) => {
