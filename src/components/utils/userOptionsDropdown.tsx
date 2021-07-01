@@ -5,6 +5,8 @@ import FaIcon from 'components/shared/icons/faIcon'
 
 import { RootState } from 'redux/reducers'
 
+import RequestService from 'services/request.service'
+
 import styles from './userOptionsDropdown.scss'
 
 const mapState = (state: RootState) => ({ name: state.user.preferredName || state.user.email })
@@ -28,9 +30,10 @@ const UserOptionsDropdown = ({ name }: Props) => {
     console.log('TODO - implement account page')
   }
 
-  const handleLogout = () => {
-    // TODO - call api/logout
-    console.log('TODO - call logout api endpoint and reload to origin')
+  const handleLogout = async () => {
+    // Clears refreshToken httpOnly cookie - requires cookie credentials to be included for them to be reset
+    // window.location.reload is not a normal function an cannot be invoked within a function chain
+    RequestService.get(`/api/logout`, { credentials: 'include' }, true).finally(() => window.location.reload())
   }
 
   useEffect(() => {
