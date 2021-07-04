@@ -44,6 +44,7 @@ export const IconLibrary = {
   moon: FaIcons.faMoon,
   'caret-down': FaIcons.faCaretDown,
   'user-circle': FaIcons.faUserCircle,
+  chalkboard: FaIcons.faChalkboard,
 }
 
 export const RegularIconLibrary = {

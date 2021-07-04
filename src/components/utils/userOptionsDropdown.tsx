@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 
 import FaIcon from 'components/shared/icons/faIcon'
 
-import { RootState } from 'redux/reducers'
+import { RootState } from 'redux/store'
 
 import RequestService from 'services/request.service'
 
