@@ -59,9 +59,12 @@ export const RegularIconLibrary = {
   moon: FaRegularIcons.faMoon,
 }
 
+export type IconType = keyof typeof IconLibrary
+export type RegularIconType = keyof typeof RegularIconLibrary
+
 export type Props = { className?: string } & (
-  | { icon: keyof typeof IconLibrary; regularIcon?: never }
-  | { icon?: never; regularIcon: keyof typeof RegularIconLibrary }
+  | { icon: IconType; regularIcon?: never }
+  | { icon?: never; regularIcon: RegularIconType }
 )
 
 const Icon = ({ icon, regularIcon, className = '' }: Props) => (
