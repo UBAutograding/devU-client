@@ -7,7 +7,7 @@ const themes = {
   dark: { name: 'dark', class: 'dark-mode' },
 }
 
-export const isDarkMode = () => themes.dark.name === LocalStorageService.get(LOCALSTORAGE_THEME_KEY)
+export const isDarkMode = () => themes.dark.name === LocalStorageService.get(LOCALSTORAGE_THEME_KEY) || (LocalStorageService.get(LOCALSTORAGE_THEME_KEY) == null && window.matchMedia('(prefers-color-scheme: dark)').matches)
 
 export const setDarkMode = () => {
   setDarkModeFlag()
