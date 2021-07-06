@@ -14,7 +14,9 @@ const GlobalToolbar = () => {
 
   return (
     <div className={styles.bar}>
-      <h1>Auto Four</h1>
+      <Link to='/' className={styles.link}>
+        <h1>Auto Four</h1>
+      </Link>
       <div className={styles.controls}>
         <div className={styles.sidebar}>
           {/* Not visable on smaller screens. Cannot use <FaIconButton /> because it requires a onClick. */}
@@ -24,13 +26,13 @@ const GlobalToolbar = () => {
           {/* Turns into a sidebar via css on mobile */}
           <div className={styles.menu}>
             <DarkModeToggle />
-            <Link to={`/users/${userId}/courses/`} className={styles.linkIcon}>
+            <Link to={`/users/${userId}/courses/`} className={styles.link}>
               Courses
             </Link>
-            <Link to={`/users/${userId}/assignments/`} className={styles.linkIcon}>
+            <Link to={`/users/${userId}/assignments/`} className={styles.link}>
               Assignments
             </Link>
-            <Link to={`/users/${userId}/submissions/`} className={styles.linkIcon}>
+            <Link to={`/users/${userId}/submissions/`} className={styles.link}>
               Submissions
             </Link>
           </div>
