@@ -2,12 +2,6 @@
 
 $box-size: 16px;
 
-.box {
-  content: '';
-  display: inline-block;
-  position: absolute;
-}
-
 .checkbox {
   display: flex;
   gap: 0.5rem;
@@ -36,7 +30,9 @@ $box-size: 16px;
 
       // Exterior "Box"
       &::before {
-        @extend .box;
+        content: '';
+        display: inline-block;
+        position: absolute;
 
         border: 1px solid $grey-lighter;
         left: -24px; // positions "fake" css radio over html radio
@@ -46,6 +42,7 @@ $box-size: 16px;
       }
     }
 
+    // Faux check mark
     &:checked {
       + label::after {
         content: '';
