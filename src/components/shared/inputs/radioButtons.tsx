@@ -12,11 +12,12 @@ export type Option = {
 type Props = {
   options: Option[]
   onChange: (value: any, e: React.ChangeEvent<HTMLInputElement>) => void
+  defaultValue?: any
   header?: string
   className?: string
 }
 
-const CheckboxRadioList = ({ options, header, onChange, className = '' }: Props) => {
+const CheckboxRadioList = ({ options, header, onChange, className = '', defaultValue }: Props) => {
   const [name] = useState(shortid.generate())
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value, e)
@@ -34,6 +35,7 @@ const CheckboxRadioList = ({ options, header, onChange, className = '' }: Props)
               value={value}
               onChange={handleChange}
               disabled={disabled}
+              defaultChecked={defaultValue === value}
             />
             <label htmlFor={value}>{label}</label>
           </span>
