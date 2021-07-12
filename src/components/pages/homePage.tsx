@@ -14,7 +14,7 @@ const checkboxes: Option[] = [
 
 const HomePage = ({}) => (
   <PageWrapper>
-    <RadioButtons options={checkboxes} onChange={(v) => console.log(v)} />
+    <RadioButtons header='Some Radio Buttons' options={checkboxes} onChange={(v) => console.log(v)} />
     <Checkbox label='Checkbox Label' onChange={(v) => console.log(v)} />
   </PageWrapper>
 )

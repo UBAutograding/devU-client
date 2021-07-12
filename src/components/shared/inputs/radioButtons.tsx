@@ -12,21 +12,33 @@ export type Option = {
 type Props = {
   options: Option[]
   onChange: (value: any, e: React.ChangeEvent<HTMLInputElement>) => void
+  header?: string
   className?: string
 }
 
-const CheckboxRadioList = ({ options, onChange, className = '' }: Props) => {
+const CheckboxRadioList = ({ options, header, onChange, className = '' }: Props) => {
   const [name] = useState(shortid.generate())
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value, e)
 
   return (
-    <div className={`${styles.list} ${className}`}>
-      {options.map(({ label, value, disabled = false }) => (
-        <span className={styles.item} key={value}>
-          <input type='radio' name={name} id={value} value={value} onChange={handleChange} disabled={disabled} />
-          <label htmlFor={value}>{label}</label>
-        </span>
-      ))}
+    <div className={`${styles.container} ${className}`}>
+      {header && <p className={styles.header}>{header}</p>}
+      <div className={styles.list}>
+        {options.map(({ label, value, disabled = false }) => (
+          <span className={styles.item} key={value}>
+            <input
+              type='radio'
+              name={header || name}
+              id={value}
+              value={value}
+              onChange={handleChange}
+              disabled={disabled}
+            />
+            <label htmlFor={value}>{label}</label>
+          </span>
+        ))}
+      </div>
     </div>
   )
 }

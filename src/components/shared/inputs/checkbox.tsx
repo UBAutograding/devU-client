@@ -16,10 +16,10 @@ const CheckboxRadioList = ({ label, onChange, className = '', disabled = false }
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.checked, e)
 
   return (
-    <span className={`${styles.checkbox} ${className}`}>
+    <div className={`${styles.checkbox} ${className}`}>
       <input id={id} name={label} type='checkbox' onChange={handleChange} disabled={disabled} />
       <label htmlFor={id}>{label}</label>
-    </span>
+    </div>
   )
 }
 

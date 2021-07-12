@@ -1,5 +1,19 @@
 @import 'variables';
 
+$outer-circle: 18px;
+$inner-circle: 12px;
+
+.circle {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.container {
+  width: 100%;
+}
+
 .list {
   display: flex;
   gap: 1rem;
@@ -14,9 +28,59 @@
   & > input:hover:enabled,
   label {
     cursor: pointer;
+    user-select: none;
   }
 
   & > input:disabled ~ label {
     cursor: default;
+    opacity: 0.7;
   }
+
+  & > input[type='radio'] {
+    opacity: 0;
+
+    + label {
+      position: relative;
+      display: inline-block;
+
+      // Exterior Circle
+      &::before {
+        @extend .circle;
+
+        border: 1px solid $grey-lighter;
+        left: -24px; // positions "fake" css radio over html radio
+
+        width: $outer-circle;
+        height: $outer-circle;
+      }
+
+      // Interior Circle
+      &::after {
+        @extend .circle;
+
+        left: -20px; // positions "fake" css radio over html radio
+        top: 4px;
+
+        width: $inner-circle;
+        height: $inner-circle;
+      }
+    }
+
+    &:checked {
+      + label::after {
+        background: $primary;
+      }
+    }
+
+    &:focus {
+      + label::before {
+        box-shadow: 0 0 8px $focus;
+      }
+    }
+  }
+}
+
+.header {
+  margin: 0;
+  margin-bottom: 0.25rem;
 }
