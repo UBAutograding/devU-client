@@ -1,0 +1,40 @@
+@import 'variables';
+
+.courseTable {
+  max-width: 1200px;
+  margin: 10px auto;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+
+  padding: 0 20px;
+  margin: 10px 0;
+
+  color: $grey;
+  font-weight: 700;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid $grey;
+
+  color: white;
+  background-color: $primary;
+  font-weight: 700;
+}
+
+.row:hover {
+  background-color: $primary-darker;
+  cursor: pointer;
+}
+
+.component {
+  padding: 0 10px;
+}
