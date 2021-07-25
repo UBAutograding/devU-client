@@ -1,0 +1,18 @@
+@import 'variables';
+
+.filters {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-bottom: 0.5rem;
+}
+
+.dropdown {
+  width: 400px;
+}
+
+@media (max-width: $small) {
+  .dropdown {
+    width: 100%;
+  }
+}
