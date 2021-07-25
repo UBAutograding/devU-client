@@ -6,8 +6,6 @@ import UserCourseListItem from 'components/listItems/userCourseListItem'
 
 import RequestService from 'services/request.service'
 
-import styles from './userCoursesListPage.scss'
-
 const UserCoursesListPage = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -42,19 +40,9 @@ const UserCoursesListPage = () => {
 
   return (
     <PageWrapper>
-      <div className={styles.courseTable}>
-        <div className={styles.header}>
-          <div className={styles.component}>Number</div>
-          <div className={styles.component}>Name</div>
-          <div className={styles.component}>Semester</div>
-          <div className={styles.component}>Start Date</div>
-          <div className={styles.component}>End Date</div>
-          <div className={styles.component}>Dropped</div>
-        </div>
-        {userCourses.map((userCourse) => (
-          <UserCourseListItem userCourse={userCourse} course={courses[userCourse.id || '']} />
-        ))}
-      </div>
+      {userCourses.map((userCourse) => (
+        <UserCourseListItem userCourse={userCourse} course={courses[userCourse.id || '']} />
+      ))}
     </PageWrapper>
   )
 }

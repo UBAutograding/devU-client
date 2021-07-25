@@ -1,0 +1,27 @@
+@import 'variables';
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+  background: $primary;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+
+  padding: 1rem;
+}
+
+@media (max-width: $small) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+.name {
+  font-size: 1.5rem;
+}
+
+.subText {
+  font-size: 1rem;
+}
