@@ -1,15 +1,28 @@
 @import 'variables';
 
 .container {
+  text-decoration: none;
+  color: $text-color;
+
   display: flex;
   justify-content: space-between;
   flex-direction: row;
 
-  background: $primary;
+  background: $secondary-lighter;
   box-shadow: $box-shadow;
   border-radius: $border-radius;
 
   padding: 1rem;
+
+  // May want to remove in the future if this item gets removed
+  margin-bottom: 0.5rem;
+
+  transition: background-color 100ms linear;
+
+  &:hover,
+  &:focus {
+    background: $secondary;
+  }
 }
 
 @media (max-width: $small) {
@@ -24,4 +37,16 @@
 
 .subText {
   font-size: 1rem;
+}
+
+.date {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  gap: 0.25rem;
+}
+
+.dateLabel {
+  color: $text-color-secondary;
 }
