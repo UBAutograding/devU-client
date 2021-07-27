@@ -2,26 +2,25 @@
 
 .container {
   text-decoration: none;
-  color: $text-color;
 
   display: flex;
   justify-content: space-between;
   flex-direction: row;
 
-  background: $secondary-lighter;
-  box-shadow: $box-shadow;
+  background: $list-item-background;
+  // box-shadow: $box-shadow;
   border-radius: $border-radius;
 
   padding: 1rem;
 
   // May want to remove in the future if this item gets removed
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 
   transition: background-color 100ms linear;
 
   &:hover,
   &:focus {
-    background: $secondary;
+    background: $list-item-background-hover;
   }
 }
 
@@ -33,10 +32,13 @@
 
 .name {
   font-size: 1.5rem;
+  color: $text-color;
 }
 
 .subText {
   font-size: 1rem;
+  font-weight: 700;
+  color: $list-item-subtext;
 }
 
 .date {

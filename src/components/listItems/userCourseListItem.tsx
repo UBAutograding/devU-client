@@ -15,20 +15,17 @@ const UserCourseListItem = ({ userCourse, course }: Props) => (
   <Link to={`/courses/${course.id}`} className={styles.container}>
     <div>
       <div className={styles.name}>{course.name}</div>
-      <div className={styles.subText}>{course.number}</div>
-      <div className={styles.subText}>{course.semester}</div>
+      <div className={styles.subText}>{course.number} | {course.semester}</div>
     </div>
-    <div>
+    {/* <div>
       <div className={styles.date}>
         <span className={styles.dateLabel}>Start Date:</span>
         {prettyPrintDate(course.startDate)}
-      </div>
-      <div className={styles.date}>
         <span className={styles.dateLabel}>End Date:</span>
         {prettyPrintDate(course.endDate)}
       </div>
-      <div>Dropped: {userCourse.dropped ? 'Yes' : 'No'}</div>
-    </div>
+      {<div>Dropped: {userCourse.dropped ? 'Yes' : 'No'}</div>}
+    </div> */}
   </Link>
 )
 

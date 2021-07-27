@@ -14,7 +14,7 @@
   }
 
   body {
-    font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+    font-family: 'Helvetica', 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     text-size-adjust: 100%;
@@ -34,6 +34,10 @@
     --secondary: #a8abab;
     --secondary-darker: #686b6b;
 
+    --list-item-background: #ebebeb;
+    --list-item-background-hover: #dfdfdf;
+    --list-item-subtext: #646464;
+
     transition: background-color 150ms linear;
   }
 
@@ -48,6 +52,10 @@
     --secondary-lighter: #636666;
     --secondary: #3d3f3f;
     --secondary-darker: #1f2020;
+
+    --list-item-background: #3b3b3b;
+    --list-item-background-hover: #303030;
+    --list-item-subtext: #b8b8b8;
 
     background-color: var(--background);
     color: var(--text-color);
