@@ -21,7 +21,8 @@ const UserCoursesListPage = () => {
   const [error, setError] = useState(null)
   const [userCourses, setUserCourses] = useState(new Array<UserCourse>())
   const [courses, setCourses] = useState<Record<string, Course>>({})
-  const [filter, setFilter] = useState<'all' | 'active' | 'inactive' | 'dropped'>('active')
+  const currentFilter = JSON.parse(localStorage.getItem('status') || '')
+  const [filter, setFilter] = useState<'all' | 'active' | 'inactive' | 'dropped'>(currentFilter)
 
   const fetchData = async () => {
     try {
@@ -29,6 +30,8 @@ const UserCoursesListPage = () => {
       const userCourses: UserCourse[] = await RequestService.get(`/api/user-courses?filterBy=${filter}`)
       const courseRequests = userCourses.map((u) => RequestService.get(`/api/courses/${u.courseId}`))
       const courses: Course[] = await Promise.all(courseRequests)
+
+      localStorage.setItem('status', JSON.stringify(filter) || '')
 
       // Mapify course ids so we can look them up more easilly via their id
       const courseMap: Record<string, Course> = {}

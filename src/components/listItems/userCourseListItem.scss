@@ -1,12 +1,10 @@
 @import 'variables';
 
 .tag {
-  width: 5px;
-  min-height: 10px;
+  min-width: 8px;
   background-color: $primary;
   margin-right: 10px;
 }
-
 
 .container {
   text-decoration: none;
