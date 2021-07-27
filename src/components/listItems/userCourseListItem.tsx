@@ -11,21 +11,18 @@ type Props = {
   course: Course
 }
 
-const UserCourseListItem = ({ userCourse, course }: Props) => (
+const UserCourseListItem = ({ course }: Props) => (
   <Link to={`/courses/${course.id}`} className={styles.container}>
+    <div className={styles.tag}></div>
     <div>
       <div className={styles.name}>{course.name}</div>
-      <div className={styles.subText}>{course.number} | {course.semester}</div>
-    </div>
-    {/* <div>
-      <div className={styles.date}>
-        <span className={styles.dateLabel}>Start Date:</span>
-        {prettyPrintDate(course.startDate)}
-        <span className={styles.dateLabel}>End Date:</span>
-        {prettyPrintDate(course.endDate)}
+      <div className={styles.subText}>
+        <div>{course.number}</div>
+        <div>Semester: {course.semester}</div>
+        <div>Start Date: {prettyPrintDate(course.startDate)}</div>
+        <div>End Date: {prettyPrintDate(course.endDate)}</div>
       </div>
-      {<div>Dropped: {userCourse.dropped ? 'Yes' : 'No'}</div>}
-    </div> */}
+    </div>
   </Link>
 )
 

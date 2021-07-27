@@ -1,22 +1,28 @@
 @import 'variables';
 
+.tag {
+  width: 5px;
+  min-height: 10px;
+  background-color: $primary;
+  margin-right: 10px;
+}
+
+
 .container {
   text-decoration: none;
 
   display: flex;
-  justify-content: space-between;
   flex-direction: row;
 
   background: $list-item-background;
-  // box-shadow: $box-shadow;
-  border-radius: $border-radius;
+  border-radius: 0.6rem;
 
-  padding: 1rem;
+  padding: 2rem;
 
   // May want to remove in the future if this item gets removed
   margin-bottom: 1rem;
 
-  transition: background-color 100ms linear;
+  transition: background-color 0.2s linear;
 
   &:hover,
   &:focus {
@@ -24,21 +30,26 @@
   }
 }
 
-@media (max-width: $small) {
-  .container {
-    flex-direction: column;
-  }
-}
-
 .name {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: $text-color;
+  margin-bottom: 0.4rem;
 }
 
 .subText {
   font-size: 1rem;
-  font-weight: 700;
   color: $list-item-subtext;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (max-width: $medium) {
+  .subText {
+    display: block;
+  }
 }
 
 .date {
