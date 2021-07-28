@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { UserCourse, Course } from 'devu-shared-modules'
 
+
 import PageWrapper from 'components/shared/layouts/pageWrapper'
 import UserCourseListItem from 'components/listItems/userCourseListItem'
 import Dropdown from 'components/shared/inputs/dropdown'
@@ -8,6 +9,7 @@ import Dropdown from 'components/shared/inputs/dropdown'
 import RequestService from 'services/request.service'
 
 import styles from './userCoursesListPage.scss'
+import LoadingOverlay from 'components/shared/loaders/loadingOverlay'
 
 const filterOptions = [
   { label: 'All', value: 'all' },
@@ -50,8 +52,26 @@ const UserCoursesListPage = () => {
     fetchData()
   }, [filter])
 
-  if (loading) return <div>Loading</div>
-  if (error) return <div>{error}</div>
+  if (loading) return <LoadingOverlay />
+
+  type Props = {
+    error: Error | null
+  }
+
+  const ErrorPage = ({error}: Props) => {
+    return (
+      <div className={styles.errorBackground}>
+        <div className={styles.errorBar}>
+          <div className={styles.errorContainer}>
+            <h1 className={styles.error}>Error: (Error Name){error?.name}</h1>
+            <p className={styles.errorMessage}>something has gone terribly wrong <br /> (Error Message){error?.message}</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) return <PageWrapper ><ErrorPage error={error} /></PageWrapper>
 
   const defaultOption = filterOptions.find((o) => o.value === filter)
 

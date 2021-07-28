@@ -18,7 +18,7 @@
 }
 
 .header {
-  color: $list-item-subtext;
+  color: $text-color;
   display: flex;
   justify-content: space-between;
 }
@@ -34,4 +34,43 @@
   margin: 0 0 0 2rem;
   font-weight: 300;
   color: $list-item-subtext;
+}
+
+// Error Message
+
+.errorBackground {
+  width: 100%;
+  height: 100%;
+  background-color: $background;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorBar {
+  width: 100%;
+  background-color: $secondary-lighter;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorContainer {
+  padding: 30px;
+  text-align: center;
+}
+
+.error {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.errorMessage {
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin: 0;
 }
