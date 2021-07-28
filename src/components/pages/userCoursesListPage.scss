@@ -16,3 +16,22 @@
     width: 100%;
   }
 }
+
+.header {
+  color: $list-item-subtext;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: $small) {
+  .header {
+    display: block;
+  }
+}
+
+.myCourses {
+  font-size: 3rem;
+  margin: 0 0 0 2rem;
+  font-weight: 300;
+  color: $list-item-subtext;
+}

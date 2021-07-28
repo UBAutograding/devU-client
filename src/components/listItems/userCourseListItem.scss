@@ -49,15 +49,3 @@
     display: block;
   }
 }
-
-.date {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-
-  gap: 0.25rem;
-}
-
-.dateLabel {
-  color: $text-color-secondary;
-}

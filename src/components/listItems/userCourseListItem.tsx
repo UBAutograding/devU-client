@@ -6,14 +6,21 @@ import { prettyPrintDate } from 'utils/date.utils'
 
 import styles from './userCourseListItem.scss'
 
+import ColorHash from 'color-hash'
+
 type Props = {
   userCourse: UserCourse
   course: Course
 }
 
+const colorHash = (input: string) => {
+  const hash = new ColorHash({hue: {min: 90, max: 270}});
+  return hash.hex(input);
+}
+
 const UserCourseListItem = ({ course }: Props) => (
   <Link to={`/courses/${course.id}`} className={styles.container}>
-    <div className={styles.tag}></div>
+    <div className={styles.tag} style={{backgroundColor: colorHash(course.number)}}></div>
     <div>
       <div className={styles.name}>{course.name}</div>
       <div className={styles.subText}>
@@ -21,6 +28,8 @@ const UserCourseListItem = ({ course }: Props) => (
         <div>Semester: {course.semester}</div>
         <div>Start Date: {prettyPrintDate(course.startDate)}</div>
         <div>End Date: {prettyPrintDate(course.endDate)}</div>
+
+        {/* Add any other class information here */}
       </div>
     </div>
   </Link>

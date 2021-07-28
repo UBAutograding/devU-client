@@ -57,14 +57,17 @@ const UserCoursesListPage = () => {
 
   return (
     <PageWrapper>
-      <div className={styles.filters}>
-        <Dropdown
-          label='Filter Courses'
-          className={styles.dropdown}
-          options={filterOptions}
-          onChange={setFilter}
-          defaultOption={defaultOption}
-        />
+      <div className={styles.header}>
+        <h2 className={styles.myCourses}>My Courses</h2>
+        <div className={styles.filters}>
+          <Dropdown
+            label='Filter Courses'
+            className={styles.dropdown}
+            options={filterOptions}
+            onChange={setFilter}
+            defaultOption={defaultOption}
+          />
+        </div>
       </div>
       {userCourses.map((userCourse) => (
         <UserCourseListItem key={userCourse.courseId} userCourse={userCourse} course={courses[userCourse.id || '']} />
