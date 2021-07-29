@@ -5,6 +5,7 @@ import { UserCourse, Course } from 'devu-shared-modules'
 import PageWrapper from 'components/shared/layouts/pageWrapper'
 import UserCourseListItem from 'components/listItems/userCourseListItem'
 import Dropdown from 'components/shared/inputs/dropdown'
+import ErrorPage from './errorPage'
 
 import RequestService from 'services/request.service'
 
@@ -53,25 +54,7 @@ const UserCoursesListPage = () => {
   }, [filter])
 
   if (loading) return <LoadingOverlay />
-
-  type Props = {
-    error: Error | null
-  }
-
-  const ErrorPage = ({error}: Props) => {
-    return (
-      <div className={styles.errorBackground}>
-        <div className={styles.errorBar}>
-          <div className={styles.errorContainer}>
-            <h1 className={styles.error}>Error: (Error Name){error?.name}</h1>
-            <p className={styles.errorMessage}>something has gone terribly wrong <br /> (Error Message){error?.message}</p>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  if (error) return <PageWrapper ><ErrorPage error={error} /></PageWrapper>
+  if (error) return <ErrorPage error={error} />
 
   const defaultOption = filterOptions.find((o) => o.value === filter)
 
