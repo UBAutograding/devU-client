@@ -12,7 +12,7 @@ const ErrorPage = ({error}: Props) => (
         <div className={styles.errorBackground}>
             <div className={styles.errorContainer}>
                 <h1 className={styles.error}>Error</h1>
-                <p className={styles.errorMessage}>{error?.message}</p>
+                <p className={styles.errorMessage}>{error?.message || "Something went wrong"}</p>
             </div>
         </div>
     </PageWrapper>
