@@ -1,49 +1,48 @@
-import React from 'react'
+import React,  { useState }  from 'react'
 
-import PageWrapper from 'components/shared/layouts/pageWrapper'
+import TextField from 'components/shared/inputs/textField'
 
-// import { useAppSelector } from 'redux/hooks'
+import RequestService from 'services/request.service'
 
-// import {useParams } from 'react-router-dom'
+import { User } from 'devu-shared-modules'
 
-// import TextField from 'components/shared/inputs/textField'
-
-// import RequestService from 'services/request.service'
-
-
-
-const EditUserForm = ({}) =>{
+type EditUserFormFields = {
+	userObj : User
+}
 
 
-// type EditUserFormFields = {
-// 	userID : int
-// }
+const EditUserForm = ({userObj} : EditUserFormFields) =>{
 
-// const submit = () => {
-// 	//will swap with sending to server but for now just console log 
-// 	console.log(preferredName);
-// 	console.log(email);
-// 	console.log(externalID);
-// }
-
-// const requestedUser = useParams() as any
-// const requestedUserID = parseInt(requestedUser.userId)
-
-// const [preferredName, setPreferredName] = useState(props.preferredName)
-// const [email, setEmail] = useState(authedUser.email)
-// const [externalID, setExternalID] = useState(authedUser.externalId)
+if(userObj.id == undefined){
+	return null
+}
 
 
+const [formData, setFormData] = useState<User>(userObj)
+
+console.log(formData)
+
+const handleUpdatePreferredName = (preferredName: string) => setFormData({ ...formData, preferredName })
 
 
-//using authed user right now for inital population but will use requested user from api later
+const submit = () => {
+
+RequestService.put(`/api/users/${userObj.id}`, formData)
+  .then((response) => {
+    console.log(response)
+  }).catch((e) => console.error(e))
+}
+
 return (
-	<PageWrapper>
-		{/*<TextField type="text" onChange={(value) => {setPreferredName(value)}} label="Preferred Name" id="preferredName" placeholder={preferredName} />
-		<TextField type="text" onChange={(value) => {setEmail(value)}} label="Email" id="email" placeholder={email} />
-		<TextField type="text" onChange={(value) => {setExternalID(value)}} label="Person Number" id="externalId" placeholder={externalID} />
-		<button onClick={submit}>Submit</button>*/}
-	</PageWrapper>)
+	<>
+		<div>
+			<h1>User Information</h1>
+			<TextField type="text" onChange={handleUpdatePreferredName} label="Preferred Name" id="preferredName" placeholder={userObj.preferredName} />
+			<TextField type="text" onChange={()=>null} label="Email" id="email" placeholder={userObj.email} disabled />
+			<TextField type="text" onChange={()=>null} label="Person Number" id="externalId" placeholder={userObj.externalId} disabled />
+			<button onClick={submit}>Submit</button>
+		</div>
+	</>)
 } 
 
 export default EditUserForm

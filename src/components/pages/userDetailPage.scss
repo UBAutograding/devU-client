@@ -1,0 +1,11 @@
+@import 'variables';
+
+.userDetailDiv{
+	display: flex;
+	justify-content: center;
+}
+
+input::placeholder{
+	opacity: 1;
+	color: $text-color;
+}
