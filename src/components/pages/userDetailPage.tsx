@@ -27,10 +27,6 @@ const [userObj, setUserObj] = useState({} as User)
  }, []);
 
 
-
-console.log(userObj)
-
-
 //using authed user right now for inital population but will use requested user from api later
 return (
 	<PageWrapper>

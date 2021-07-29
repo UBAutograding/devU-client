@@ -20,8 +20,6 @@ if(userObj.id == undefined){
 
 const [formData, setFormData] = useState<User>(userObj)
 
-console.log(formData)
-
 const handleUpdatePreferredName = (preferredName: string) => setFormData({ ...formData, preferredName })
 
 
