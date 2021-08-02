@@ -13,8 +13,6 @@ import EditUserForm from 'components/shared/forms/editUserForm'
 import styles from './userDetailPage.scss'
 
 
-
-
 const UserDetailPage = ({}) =>{
 
 
