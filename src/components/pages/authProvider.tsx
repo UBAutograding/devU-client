@@ -68,6 +68,7 @@ const ProviderForm = ({ provider }: ProivderFormProps) => {
           {fields.map((fieldName, index) => (
             <TextField
               id={`input-${index}`}
+              // @ts-expect-error - fields come from configuration yml in api, no way to type check that
               type={fieldName}
               label={fieldName}
               onChange={(value: string) => handleUpdateForm(fieldName, value)}

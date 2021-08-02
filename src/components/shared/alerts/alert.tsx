@@ -1,103 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react'
+
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { SET_ALERT } from 'redux/types/active.types'
+
+import { getCssVariables } from 'utils/theme.utils'
 
 import styles from './alert.scss'
 
-import success from 'assets/alertImages/check.svg'
-import error from 'assets/alertImages/error.svg'
-import info from 'assets/alertImages/info.svg'
-import warning from 'assets/alertImages/warning.svg'
+const Alert = () => {
+  const alert = useAppSelector((state) => state.active.alert)
+  const setAlert = useAppDispatch<typeof SET_ALERT>(SET_ALERT)
 
+  useEffect(() => {
+    if (alert && alert.autoDelete) setTimeout(() => setAlert(null), 5000)
+  }, [alert])
 
-export enum AlertBoxPositions {
-    TL = "top_left",
-    TR = "top_right",
-    BL = "bottom_left",
-    BR = "bottom_right"
+  const handleRemoveAlert = () => setAlert(null)
+
+  if (!alert) return null
+
+  const colors = getCssVariables()
+
+  let backgroundColor = colors.red
+
+  if (alert.type === 'warning') backgroundColor = colors.yellow
+  else if (alert.type === 'info') backgroundColor = colors.purple
+  else if (alert.type === 'success') backgroundColor = colors.green
+
+  return (
+    <>
+      <div className={styles.notification_container}>
+        <div className={`${styles.notification} ${styles.alert}`} style={{ backgroundColor }}>
+          <button onClick={handleRemoveAlert}>X</button>
+          <div>
+            <p className={styles.notification_message}>{alert.message}</p>
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }
 
-
-
-const AlertBoxImgs : Map<string, string> = new Map<string, string>();
-AlertBoxImgs.set("Info", info)
-AlertBoxImgs.set("Success", success)
-AlertBoxImgs.set("Warning", warning)
-AlertBoxImgs.set("Error", error)
-
-export type AlertBox = {
-    id: number
-    title: string
-    description: string
-    backgroundColor: string,
-    type: "Info" | "Success" | "Warning" | "Error",
-    autoDelete?: boolean,
-    dismissTime?: number
-}
-
-type Props = {
-    alerts: Array<AlertBox>,
-    position: AlertBoxPositions,
-    autoDelete?: boolean,
-    dismissTime?: number
-}
-
-const Alert =({ alerts, position}: Props) => {
-
-    const [list, setList] = useState(alerts);
-
-    useEffect(() => {
-        setList([...list,...alerts]);
-    }, [alerts]);
-
-    useEffect(() => {
-        alerts.map((alert) =>{
-            setTimeout(() => {
-                if (alert.autoDelete) {
-                    deleteAlert(alert.id)
-                }
-            }, (alert.dismissTime)? alert.dismissTime : 5000)
-        })
-    }, [alerts]);
-
-
-    const deleteAlert = (id: number) => {
-        console.log(id)
-        let newList = list
-        const listItemIndex = newList.findIndex(e => e.id === id);
-        newList.splice(listItemIndex, 1);
-        setList([...newList]);
-        console.log(list)
-    }
-
-    return (
-        <>
-            <div className={`${styles.notification_container} ${styles[`${position}`]}`}>
-                {
-                    list.map((alert, i) =>     
-                        <div 
-                            key={i}
-                            className={`${styles.notification} ${styles.alert} ${styles[`${position}`]}`}
-                            style={{ backgroundColor: alert.backgroundColor }}
-                        >
-                            <button onClick={() => deleteAlert(alert.id)}>
-                                X
-                            </button>
-                            <div className={`${styles.notification_image}`}>
-                                <img src={AlertBoxImgs.get(`${alert.type}`)} alt="" />
-                            </div>
-                            <div>
-                                <p className={styles.notification_title}>{alert.title}</p>
-                                <p className={styles.notification_message}>
-                                    {alert.description}
-                                </p>
-                            </div>
-                        </div>
-                    )
-                }
-            </div>
-        </>
-    );
-}
-
-
-
-export default Alert;
+export default Alert
