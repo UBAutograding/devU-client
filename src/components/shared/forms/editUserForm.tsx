@@ -21,11 +21,14 @@ const EditUserForm = ({ user }: Props) => {
 
   const submit = () => {
     RequestService.put(`/api/users/${user.id}`, {})
-      .then((response) => console.log(response))
+      .then((response) => {
+        const message = response.message
+        setAlert({ autoDelete: true, type: 'success', message })
+      })
       .catch((err: ExpressValidationError[] | Error) => {
         const message = Array.isArray(err) ? err.map((e) => `${e.param} ${e.msg}`).join(', ') : err.message
 
-        setAlert({ autoDelete: true, type: 'error', message })
+        setAlert({ autoDelete: false, type: 'error', message })
       })
   }
 

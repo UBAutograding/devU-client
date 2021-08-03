@@ -9,3 +9,7 @@ input::placeholder{
 	opacity: 1;
 	color: $text-color;
 }
+
+input {
+	background-color: $background;
+}
