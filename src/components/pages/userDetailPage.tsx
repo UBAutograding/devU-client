@@ -32,7 +32,6 @@ const UserDetailPage = ({}) => {
 
   if (loading) return <LoadingOverlay />
 
-  //using authed user right now for inital population but will use requested user from api later
   return (
     <PageWrapper>
       <div className={styles.userDetailDiv}>

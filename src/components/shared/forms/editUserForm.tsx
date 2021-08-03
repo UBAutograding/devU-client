@@ -20,14 +20,13 @@ const EditUserForm = ({ user }: Props) => {
   const handleUpdatePreferredName = (preferredName: string) => setFormData({ ...formData, preferredName })
 
   const submit = () => {
-    RequestService.put(`/api/users/${user.id}`, {})
+    RequestService.put(`/api/users/${user.id}`, formData)
       .then((response) => {
         const message = response.message
         setAlert({ autoDelete: true, type: 'success', message })
       })
       .catch((err: ExpressValidationError[] | Error) => {
         const message = Array.isArray(err) ? err.map((e) => `${e.param} ${e.msg}`).join(', ') : err.message
-
         setAlert({ autoDelete: false, type: 'error', message })
       })
   }
