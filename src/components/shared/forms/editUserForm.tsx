@@ -15,15 +15,14 @@ type Props = {
 
 const EditUserForm = ({ user }: Props) => {
   const [formData, setFormData] = useState<User>(user)
-  const setAlert = useAppDispatch<typeof SET_ALERT>(SET_ALERT)
+  const setAlert = useAppDispatch(SET_ALERT)
 
   const handleUpdatePreferredName = (preferredName: string) => setFormData({ ...formData, preferredName })
 
-  const submit = () => {
+  const handleSubmit = () => {
     RequestService.put(`/api/users/${user.id}`, formData)
-      .then((response) => {
-        const message = response.message
-        setAlert({ autoDelete: true, type: 'success', message })
+      .then(() => {
+        setAlert({ autoDelete: false, type: 'success', message: 'User Preferences Updated' })
       })
       .catch((err: ExpressValidationError[] | Error) => {
         const message = Array.isArray(err) ? err.map((e) => `${e.param} ${e.msg}`).join(', ') : err.message
@@ -42,7 +41,7 @@ const EditUserForm = ({ user }: Props) => {
       />
       <TextField type='email' label='Email' id='email' placeholder={user.email} disabled />
       <TextField label='Person Number' id='externalId' placeholder={user.externalId} disabled />
-      <button onClick={submit}>Submit</button>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   )
 }

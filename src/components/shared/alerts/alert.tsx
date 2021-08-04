@@ -9,7 +9,7 @@ import styles from './alert.scss'
 
 const Alert = () => {
   const alert = useAppSelector((state) => state.active.alert)
-  const setAlert = useAppDispatch<typeof SET_ALERT>(SET_ALERT)
+  const setAlert = useAppDispatch(SET_ALERT)
 
   useEffect(() => {
     if (alert && alert.autoDelete) setTimeout(() => setAlert(null), 5000)
@@ -28,16 +28,14 @@ const Alert = () => {
   else if (alert.type === 'success') backgroundColor = colors.green
 
   return (
-    <>
-      <div className={styles.notification_container}>
-        <div className={`${styles.notification} ${styles.alert}`} style={{ backgroundColor }}>
-          <button onClick={handleRemoveAlert}>X</button>
-          <div>
-            <p className={styles.notification_message}>{alert.message}</p>
-          </div>
+    <div className={styles.notification_container}>
+      <div className={`${styles.notification} ${styles.alert}`} style={{ backgroundColor }}>
+        <button onClick={handleRemoveAlert}>X</button>
+        <div>
+          <p className={styles.notification_message}>{alert.message}</p>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

@@ -3,6 +3,10 @@
   box-sizing: border-box;
   position: fixed;
   z-index: 1;
+  bottom: 12px;
+  left: 12px;
+  transition: transform .6s ease-in;
+  animation: toast-in-left .7s;
 
   .notification {
     background: #fff;
@@ -21,6 +25,7 @@
     opacity: 0.9;
     background-position: 15px;
     background-repeat: no-repeat;
+    height: 100%;
 
     bottom: 12px;
     left: 12px;
@@ -52,6 +57,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
   }
 
   .notification_image {
@@ -68,7 +78,7 @@
     height: 50px;
     width: 365px;
     color: #fff;
-    padding: 20px 15px 10px 10px;
+    padding: 10px 15px 10px 10px;
   }
 
   button {
