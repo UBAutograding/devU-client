@@ -20,7 +20,7 @@ const UserOptionsDropdown = () => {
   }
 
   return (
-    <div className={styles.dropdown}>
+    <div className={styles.dropdown} tabIndex={1}>
       {/* Opening and closing dropdown handled via CSS -  unfocusing dropdown will force close*/}
       <button className={styles.trigger}>
         {/* Name vs icon dislpay controlled via CSS */}

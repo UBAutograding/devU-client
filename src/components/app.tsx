@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Router } from 'react-router-dom'
 
-import { useAppDispatch } from 'redux/hooks'
+import { useActionless } from 'redux/hooks'
 import { SET_USER } from 'redux/types/user.types'
 
 import Alert from 'components/shared/alerts/alert'
@@ -16,7 +16,7 @@ import fetchUser from 'utils/fetchUser.utils'
 import { initializeTheme } from 'utils/theme.utils'
 
 const App = () => {
-  const setUser = useAppDispatch<typeof SET_USER>(SET_USER)
+  const [setUser] = useActionless(SET_USER)
 
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
