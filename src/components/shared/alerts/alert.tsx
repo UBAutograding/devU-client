@@ -5,6 +5,8 @@ import { SET_ALERT } from 'redux/types/active.types'
 
 import { getCssVariables } from 'utils/theme.utils'
 
+import FaIconButton from 'components/shared/inputs/faIconButton'
+
 import styles from './alert.scss'
 
 const Alert = () => {
@@ -28,11 +30,11 @@ const Alert = () => {
   else if (alert.type === 'success') backgroundColor = colors.green
 
   return (
-    <div className={styles.notification_container}>
-      <div className={`${styles.notification} ${styles.alert}`} style={{ backgroundColor }}>
-        <button onClick={handleRemoveAlert}>X</button>
-        <div>
-          <p className={styles.notification_message}>{alert.message}</p>
+    <div className={styles.notificationContainer}>
+      <div className={styles.notification} style={{ backgroundColor }}>
+        <FaIconButton className={styles.notificationClose} onClick={handleRemoveAlert} icon='times' />
+        <div className={styles.notificationMessageContainer}>
+          <p className={styles.notificationMessage}>{alert.message}</p>
         </div>
       </div>
     </div>

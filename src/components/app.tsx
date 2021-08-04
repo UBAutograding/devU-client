@@ -14,6 +14,8 @@ import history from 'services/history.service'
 import fetchUser from 'utils/fetchUser.utils'
 import { initializeTheme } from 'utils/theme.utils'
 
+import Alert from 'components/shared/alerts/alert'
+
 const App = () => {
   const setUser = useAppDispatch<typeof SET_USER>(SET_USER)
 
@@ -36,9 +38,12 @@ const App = () => {
   if (error) return <ErrorPage error={error} />
 
   return (
-    <Router history={history}>
-      <AuthenticatedRouter />
-    </Router>
+    <>
+      <Router history={history}>
+        <AuthenticatedRouter />
+      </Router>
+      <Alert />
+    </>
   )
 }
 

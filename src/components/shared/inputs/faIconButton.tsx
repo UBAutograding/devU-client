@@ -6,10 +6,14 @@ import styles from './faIconButton.scss'
 
 type Props = {
   onClick: () => void
+  className?: string
 } & FaIconProps
 
-const FaIconButton = (props: Props) => (
-  <button onClick={props.onClick} className={styles.button} aria-label={props.icon || props.regularIcon}>
+const FaIconButton = ({ className = '', ...props }: Props) => (
+  <button
+    onClick={props.onClick}
+    className={`${className} ${styles.button}`}
+    aria-label={props.icon || props.regularIcon}>
     <FaIcon {...props} />
   </button>
 )

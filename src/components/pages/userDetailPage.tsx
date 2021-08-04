@@ -30,11 +30,11 @@ const UserDetailPage = ({}) => {
   useEffect(() => {
     RequestService.get(`/api/users/${userId}`)
       .then(setUser)
-      .catch((e) => setError(e))
+      .catch(setError)
       .finally(() => setLoading(false))
   }, [])
 
-  if (loading) return <LoadingOverlay />
+  if (loading) return <LoadingOverlay delay={250} />
   if (error) return <ErrorPage error={error} />
   return (
     <PageWrapper>

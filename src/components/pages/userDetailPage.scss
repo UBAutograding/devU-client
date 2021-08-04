@@ -4,16 +4,3 @@
 	display: flex;
 	justify-content: center;
 }
-
-input::placeholder{
-	opacity: 1;
-	color: $text-color;
-}
-
-input:not([disabled])::placeholder{
-	opacity: .75;
-}
-
-input {
-	background-color: $background;
-}
