@@ -24,9 +24,10 @@
 	.buttonLabel{
 		opacity: 0;
 	}
-	.buttonLabel:before{
-
+	.loading:after {
+		display: block;
 	}
+
 }
 
 .loading {
@@ -36,7 +37,7 @@
 
 .loading:after {
   overflow: hidden;
-  display: block;
+  display: none;
   vertical-align: bottom;
   -webkit-animation: ellipsis steps(4,end) 1000ms infinite;      
   animation: ellipsis steps(4,end) 1000ms infinite;

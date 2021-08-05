@@ -40,7 +40,7 @@ const EditUserForm = ({ user }: Props) => {
         onChange={handleUpdatePreferredName}
         label='Preferred Name'
         id='preferredName'
-        placeholder={user.preferredName}
+        defaultValue={user.preferredName}
       />
       <TextField type='email' label='Email' id='email' placeholder={user.email} disabled />
       <TextField label='Person Number' id='externalId' placeholder={user.externalId} disabled />

@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom'
 
 import RequestService from 'services/request.service'
 
-import EditUserForm from 'components/shared/forms/editUserForm'
+import EditUserForm from 'components/forms/editUserForm'
 
 import styles from './userDetailPage.scss'
 

@@ -12,9 +12,19 @@ type Props = {
   placeholder?: string
   id?: string
   disabled?: true
+  defaultValue?: string
 }
 
-const TextField = ({ type = 'text', onChange, className = '', label, placeholder, id, disabled }: Props) => {
+const TextField = ({
+  type = 'text',
+  onChange,
+  className = '',
+  label,
+  placeholder,
+  id,
+  disabled,
+  defaultValue,
+}: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) onChange(e.target.value, e)
   }
@@ -29,6 +39,7 @@ const TextField = ({ type = 'text', onChange, className = '', label, placeholder
         className={styles.input}
         placeholder={placeholder}
         disabled={disabled}
+        defaultValue={defaultValue}
       />
     </div>
   )
