@@ -1,5 +1,3 @@
-@import 'variables';
-
 .textField {
   display: flex;
   flex-direction: column;
@@ -10,14 +8,4 @@
 
 .input {
   padding: 5px;
-  background-color: $background;
-}
-
-.input::placeholder{
-  opacity: 1;
-  color: $text-color;
-}
-
-.input:not([disabled])::placeholder{
-  opacity: .75;
 }

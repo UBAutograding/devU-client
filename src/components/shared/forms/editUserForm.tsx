@@ -44,7 +44,9 @@ const EditUserForm = ({ user }: Props) => {
       />
       <TextField type='email' label='Email' id='email' placeholder={user.email} disabled />
       <TextField label='Person Number' id='externalId' placeholder={user.externalId} disabled />
-      <Button onClick={handleSubmit} label='Submit' loading={loading} />
+      <Button onClick={handleSubmit} loading={loading}>
+        Submit
+      </Button>
     </div>
   )
 }

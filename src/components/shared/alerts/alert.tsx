@@ -32,7 +32,7 @@ const Alert = () => {
   return (
     <div className={styles.notificationContainer}>
       <div className={styles.notification} style={{ backgroundColor }}>
-        <FaIconButton className={styles.notificationClose} onClick={handleRemoveAlert} icon='times' />
+        <FaIconButton buttonClass={styles.notificationClose} onClick={handleRemoveAlert} icon='times' />
         <div className={styles.notificationMessageContainer}>
           <p className={styles.notificationMessage}>{alert.message}</p>
         </div>
