@@ -4,6 +4,7 @@ import { Router } from 'react-router-dom'
 import { useAppDispatch } from 'redux/hooks'
 import { SET_USER } from 'redux/types/user.types'
 
+import Alert from 'components/shared/alerts/alert'
 import AuthenticatedRouter from 'components/authenticatedRouter'
 import AuthProvider from 'components/pages/authProvider'
 import LoadingOverlay from 'components/shared/loaders/loadingOverlay'
@@ -13,8 +14,6 @@ import history from 'services/history.service'
 
 import fetchUser from 'utils/fetchUser.utils'
 import { initializeTheme } from 'utils/theme.utils'
-
-import Alert from 'components/shared/alerts/alert'
 
 const App = () => {
   const setUser = useAppDispatch<typeof SET_USER>(SET_USER)
@@ -38,12 +37,10 @@ const App = () => {
   if (error) return <ErrorPage error={error} />
 
   return (
-    <>
-      <Router history={history}>
-        <AuthenticatedRouter />
-      </Router>
+    <Router history={history}>
       <Alert />
-    </>
+      <AuthenticatedRouter />
+    </Router>
   )
 }
 

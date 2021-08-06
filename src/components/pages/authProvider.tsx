@@ -92,7 +92,7 @@ const AuthProvider = ({}) => {
   const [provider, setProvider] = useState<AuthProvider>()
 
   const fetchProviders = () => {
-    RequestService.get('/api/login/providers')
+    RequestService.get<AuthProvider[]>('/api/login/providers')
       .then(setProviders)
       .catch(setError)
       .finally(() => setLoading(false))
