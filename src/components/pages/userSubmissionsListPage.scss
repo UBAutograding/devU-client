@@ -5,10 +5,12 @@
   justify-content: flex-end;
 
   margin-bottom: 1rem;
+
+  gap: 0.25rem;
 }
 
 .dropdown {
-  width: 300px;
+  width: 200px;
 }
 
 .header {
@@ -24,5 +26,9 @@
 
   .header {
     display: block;
+  }
+
+  .filters {
+    flex-direction: column;
   }
 }
