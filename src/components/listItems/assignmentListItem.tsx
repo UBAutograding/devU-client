@@ -1,9 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Assignment } from 'devu-shared-modules'
 
 import styles from './assignmentListItem.scss'
 import { prettyPrintDate } from 'utils/date.utils'
+
+import ListItemWrapper from 'components/shared/layouts/listItemWrapper'
 
 type Props = {
   assignment: Assignment,
@@ -11,10 +12,12 @@ type Props = {
 }
 
 const AssignmentListItem = ({ assignment, courseId }: Props) => (
-  <Link to={`/courses/${courseId}/assignments/${assignment.id}`} className={styles.container} >
-    <h3 className={styles.name}>{assignment.name}</h3>
-    <p className={styles.dueDate}>Due {prettyPrintDate(assignment.dueDate)}</p>
-  </Link>
+  <ListItemWrapper
+    to={`/courses/${courseId}/assignments/${assignment.id}`}
+    tag={`${courseId}-${assignment.id}`}>
+      <h3 className={styles.name}>{assignment.name}</h3>
+      <p className={styles.dueDate}>Due At: {prettyPrintDate(assignment.dueDate)}</p>
+  </ListItemWrapper>
 )
 
 export default AssignmentListItem
