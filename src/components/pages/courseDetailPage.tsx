@@ -111,7 +111,7 @@ const CourseDetailPage = () => {
                 </div>
             </header>
             {userCourse &&
-                <div>
+                <div className={styles.buttons}>
                     <Link className={styles.button} to={`${courseId}/assignments`}><Button>Gradebook</Button></Link>
                     <Link className={styles.button} to={`${courseId}/roster`}><Button>Roster</Button></Link>
                 </div>

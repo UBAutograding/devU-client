@@ -10,8 +10,12 @@
     }
 }
 
-.button:not(:last-child) {
-    margin-right: 1rem;
+.buttons {
+    margin-bottom: 1rem;
+    
+    & .button:not(:last-child) {
+        margin-right: 1rem;
+    }
 }
 
 .assignmentsHeader {
