@@ -1,0 +1,55 @@
+@import 'variables';
+
+.subtitle {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 1rem;
+
+    h3 {
+        margin: 0 1rem 0 0;
+    }
+}
+
+.buttons {
+    margin-bottom: 1rem;
+    
+    & .button:not(:last-child) {
+        margin-right: 1rem;
+    }
+}
+
+.assignmentsHeader {
+    display: flex;
+    justify-content:space-between; 
+
+    & .dropdowns {
+        display: flex;
+
+        & .dropdown {
+            width: 300px;
+        }
+
+        & .dropdown:not(:last-child) {
+            margin-right: 1rem;
+        }
+    }
+}
+
+@media (max-width: 850px) {
+    .assignmentsHeader {
+      display: block;
+
+      & .dropdowns {
+          margin-bottom: 1rem;
+      }
+    }
+}
+
+@media (max-width: 600px) {
+    .subtitle {
+        display: block;
+        h3 {
+            margin-bottom: .5rem;
+        }
+    }
+}
