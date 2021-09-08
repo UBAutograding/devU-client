@@ -6,16 +6,11 @@ import { prettyPrintDate } from 'utils/date.utils'
 
 import styles from './userCourseListItem.scss'
 
-import ColorHash from 'color-hash'
+import colorHash from 'utils/colorHash.utils'
 
 type Props = {
   userCourse: UserCourse
   course: Course
-}
-
-const colorHash = (input: string) => {
-  const hash = new ColorHash({hue: {min: 90, max: 270}});
-  return hash.hex(input);
 }
 
 const UserCourseListItem = ({ course }: Props) => (

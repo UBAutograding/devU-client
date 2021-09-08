@@ -23,7 +23,7 @@ const filterOptions: Option<Filter>[] = [
   { label: 'Dropped', value: 'dropped' },
 ]
 
-const CourseAssignmentsListPage = () => {
+const AssignmentsListPage = () => {
   const defaultFilter = LocalStorageService.get<Filter>(FILTER_LOCAL_STORAGE_KEY) || 'active'
 
   const [loading, setLoading] = useState(true)
@@ -81,4 +81,4 @@ const CourseAssignmentsListPage = () => {
   )
 }
 
-export default CourseAssignmentsListPage
+export default AssignmentsListPage
